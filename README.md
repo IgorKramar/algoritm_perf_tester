@@ -45,20 +45,28 @@ To add a new algorithm for testing, follow these steps:
 2. Export the algorithm as the default function and provide metadata for performance testing:
 
     ```typescript
-    const exampleAlgorithm: (arr: number[]) => number[] = (arr: number[]): number[] => {
-      return arr.sort((a, b) => a - b);
+    import { Algorithm } from '../types.js';
+
+    // Algorithm that takes an array of user objects and returns an array of user names
+    const processUsers: Algorithm<
+      { id: string; name: string; email: string }[],
+      string[]
+    > = (users) => {
+      return users.map((user) => user.name);
     };
 
-    exampleAlgorithm.info = {
-      name: 'Example Algorithm',
-      description: 'Sorts an array of numbers using the built-in JavaScript sort function.',
-      timeComplexity: 'O(n log n)',
-      spaceComplexity: 'O(log n)',
-      inputType: 'number[]',
-      outputType: 'number[]'
+    // Adding metadata
+    processUsers.info = {
+      name: 'User Processing',
+      description: 'Processes an array of users and returns their names.',
+      timeComplexity: 'O(n)', // Time complexity: iterating through the array
+      spaceComplexity: 'O(n)', // Space complexity: creating a new array of names
+      inputType: 'object[]', // Input data type
+      outputType: 'string[]' // Output data type
     };
 
-    export default exampleAlgorithm;
+    export default processUsers;
+
     ```
 
 3. The new algorithm will automatically be included in the performance tests.
