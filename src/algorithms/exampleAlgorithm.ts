@@ -1,4 +1,9 @@
-import { Algorithm } from '../types.js';
+import {
+  Algorithm,
+  Complexity,
+  InputDataType,
+  OutputDataType
+} from '../types.js';
 
 // Алгоритм, который принимает массив объектов и возвращает массив имён пользователей
 const processUsers: Algorithm<
@@ -12,10 +17,10 @@ const processUsers: Algorithm<
 processUsers.info = {
   name: 'Процессинг пользователей',
   description: 'Обрабатывает массив пользователей и возвращает их имена.',
-  timeComplexity: 'O(n)', // Временная сложность: проход по массиву
-  spaceComplexity: 'O(n)', // Пространственная сложность: новый массив с именами
-  inputType: 'object[]', // Тип входных данных
-  outputType: 'string[]' // Тип выходных данных
+  timeComplexity: Complexity.Linear, // Временная сложность: проход по массиву
+  spaceComplexity: Complexity.Linear, // Пространственная сложность: новый массив с именами
+  inputType: InputDataType.ObjectArray, // Тип входных данных
+  outputType: OutputDataType.StringArray // Тип выходных данных
 };
 
 export default processUsers;

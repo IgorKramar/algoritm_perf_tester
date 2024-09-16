@@ -11,8 +11,11 @@ export async function runPerformanceTest<I, O>(
     timeComplexity,
     spaceComplexity,
     inputType,
-    outputType
+    outputType,
+    sorted
   } = algorithm.info;
+
+  let currentTestData = testData;
 
   // Выводим информацию об алгоритме с цветами и отступами
   console.log(chalk.blue.bold(`\nАлгоритм: ${name}\n`)); // Отступ после названия алгоритма
@@ -26,17 +29,22 @@ export async function runPerformanceTest<I, O>(
 
   // Выводим входные данные (только первые 3 элемента)
   if (Array.isArray(testData)) {
+    if (sorted) {
+      currentTestData = testData.sort();
+    }
     const displayData = testData.slice(0, 3);
     console.log(chalk.magenta(`  Входные данные (первые 3 элемента):`));
     console.log(`${JSON.stringify(displayData, null, 2)}...\n`); // С отступами и новой строкой
   } else {
     console.log(
-      chalk.magenta(`Входные данные: ${JSON.stringify(testData, null, 2)}\n`)
+      chalk.magenta(
+        `Входные данные: ${JSON.stringify(currentTestData, null, 2)}\n`
+      )
     );
   }
 
   console.time(chalk.red(`  Время выполнения`));
-  const result = algorithm(testData);
+  const result = algorithm(currentTestData);
   console.timeEnd(chalk.red(`  Время выполнения`));
   console.log('\n'); // Отступ после времени выполнения
 
