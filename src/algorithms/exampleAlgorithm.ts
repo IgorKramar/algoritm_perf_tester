@@ -5,22 +5,19 @@ import {
   OutputDataType
 } from '../types.js';
 
-// Алгоритм, который принимает массив объектов и возвращает массив имён пользователей
-const processUsers: Algorithm<
-  { id: string; name: string; email: string }[],
-  string[]
-> = (users) => {
-  return users.map((user) => user.name);
+// Algorithm that takes an array of numbers and returns the squared values
+const squareNumbers: Algorithm<number[], number[]> = (numbers) => {
+  return numbers.map((num) => num * num);
 };
 
-// Добавляем метаданные
-processUsers.info = {
-  name: 'Процессинг пользователей',
-  description: 'Обрабатывает массив пользователей и возвращает их имена.',
-  timeComplexity: Complexity.Linear, // Временная сложность: проход по массиву
-  spaceComplexity: Complexity.Linear, // Пространственная сложность: новый массив с именами
-  inputType: InputDataType.ObjectArray, // Тип входных данных
-  outputType: OutputDataType.StringArray // Тип выходных данных
+// Metadata about the algorithm
+squareNumbers.info = {
+  name: 'Square Numbers',
+  description: 'Squares an array of numbers.',
+  timeComplexity: Complexity.Linear, // O(n)
+  spaceComplexity: Complexity.Linear, // O(n)
+  inputType: InputDataType.NumberArray, // input is an array of numbers
+  outputType: OutputDataType.NumberArray // output is an array of numbers
 };
 
-export default processUsers;
+export default squareNumbers;

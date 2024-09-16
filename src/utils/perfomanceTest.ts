@@ -41,30 +41,26 @@ export async function runPerformanceTest<I, O>(
       currentTestData = testData.sort();
     }
     const displayData = testData.slice(0, 3);
-    console.log(chalk.magenta(`  Входные данные (первые 3 элемента):`));
+    console.log(chalk.magenta(`  Input Data (first 3 elements):`));
     console.log(`${JSON.stringify(displayData, null, 2)}...\n`);
   } else {
     console.log(
-      chalk.magenta(
-        `Входные данные: ${JSON.stringify(currentTestData, null, 2)}\n`
-      )
+      chalk.magenta(`Input Data: ${JSON.stringify(currentTestData, null, 2)}\n`)
     );
   }
 
-  console.time(chalk.red(`  Время выполнения`));
+  console.time(chalk.red(`  Execution Time: `));
   const result = algorithm(currentTestData);
-  console.timeEnd(chalk.red(`  Время выполнения`));
+  console.timeEnd(chalk.red(`  Execution Time: `));
   console.log('\n');
 
   // Display result (only first 3 elements if it's an array)
   if (Array.isArray(result)) {
     const displayResult = result.slice(0, 3);
-    console.log(chalk.magenta(`  Результат (первые 3 элемента):`));
+    console.log(chalk.magenta(`  Output (first 3 elements):`));
     console.log(`${JSON.stringify(displayResult, null, 2)}...\n`);
   } else {
-    console.log(
-      chalk.magenta(`Результат: ${JSON.stringify(result, null, 2)}\n`)
-    );
+    console.log(chalk.magenta(`Output: ${JSON.stringify(result, null, 2)}\n`));
   }
 
   console.log(
