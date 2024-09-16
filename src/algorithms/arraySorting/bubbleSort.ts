@@ -3,7 +3,7 @@ import {
   Complexity,
   InputDataType,
   OutputDataType
-} from '../types.js';
+} from '../../types.js';
 
 const bubbleSort: Algorithm<number[], number[]> = (numbers) => {
   const n = numbers.length;

@@ -1,3 +1,5 @@
+import { InputType, OutputType } from './utils/typeMappers.js';
+
 export interface AlgorithmInfo {
   name: string;
   description: string;
@@ -14,27 +16,29 @@ export type Algorithm<I, O> = {
 };
 
 export enum InputDataType {
-  NumberArray = 'number[]',
-  StringArray = 'string[]',
-  BooleanArray = 'boolean[]',
-  DateArray = 'date[]',
-  ObjectArray = 'object[]',
+  NumberArray = '[1, 2, 3]',
+  StringArray = '[string, string, string]',
+  BooleanArray = '[true, false, true]',
+  DateArray = '[Date, Date, Date]',
+  ObjectArray = '[{}, {}, {}]',
+  Matrix = '[[], [], []]',
   String = 'string',
-  Number = 'number',
-  Boolean = 'boolean',
-  Date = 'date'
+  Number = '123',
+  Boolean = 'true',
+  Date = 'Date'
 }
 
 export enum OutputDataType {
-  NumberArray = 'number[]',
-  StringArray = 'string[]',
-  BooleanArray = 'boolean[]',
-  DateArray = 'date[]',
-  ObjectArray = 'object[]',
+  NumberArray = '[1, 2, 3]',
+  StringArray = '[string, string, string]',
+  BooleanArray = '[true, false, true]',
+  DateArray = '[Date, Date, Date]',
+  ObjectArray = '[{}, {}, {}]',
+  Matrix = '[[], [], []]',
   String = 'string',
-  Number = 'number',
-  Boolean = 'boolean',
-  Date = 'date'
+  Number = '123',
+  Boolean = 'true',
+  Date = 'Date'
 }
 
 export enum Complexity {
@@ -76,3 +80,9 @@ export enum Complexity {
   NearLinear = 'O(n log* n)', // Почти линейное время, например, в сортировке с итерационным логарифмом
   SuperLinear = 'O(n^1.5)' // Суперлинейное время, встречается в редких случаях
 }
+
+export type AlgorithmTree = {
+  [key: string]:
+    | AlgorithmTree
+    | Algorithm<InputType<InputDataType>, OutputType<OutputDataType>>;
+};

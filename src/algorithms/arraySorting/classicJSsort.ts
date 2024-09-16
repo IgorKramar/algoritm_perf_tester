@@ -3,7 +3,7 @@ import {
   Complexity,
   InputDataType,
   OutputDataType
-} from '../types.js';
+} from '../../types.js';
 
 const classicJSSort: Algorithm<number[], number[]> = (numbers) => {
   return numbers.sort();
@@ -12,8 +12,8 @@ const classicJSSort: Algorithm<number[], number[]> = (numbers) => {
 classicJSSort.info = {
   name: 'Classic JS sort function',
   description: 'Sorts numbers array with js sort function.',
-  timeComplexity: Complexity.Quadratic,
-  spaceComplexity: Complexity.Constant,
+  timeComplexity: Complexity.Logarithmic,
+  spaceComplexity: Complexity.Linear,
   inputType: InputDataType.NumberArray,
   outputType: OutputDataType.NumberArray
 };

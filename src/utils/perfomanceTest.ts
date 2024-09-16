@@ -34,6 +34,11 @@ export async function runPerformanceTest<I, O>(
   console.log(chalk.yellow(`  Space Complexity: ${spaceComplexity}`));
   console.log(chalk.cyan(`  Input Type: ${inputType}`));
   console.log(chalk.cyan(`  Output Type: ${outputType}`));
+  console.log(
+    chalk.magenta(
+      `  Input length: ${Array.isArray(currentTestData) ? currentTestData.length : 'Not Array'}`
+    )
+  );
 
   // Display input data (only first 3 elements)
   if (Array.isArray(testData)) {
