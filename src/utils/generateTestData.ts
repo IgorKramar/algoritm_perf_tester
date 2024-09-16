@@ -1,7 +1,15 @@
 import { faker } from '@faker-js/faker';
 import { InputDataType } from '../types.js';
 
-// Генерация тестовых данных в зависимости от типа
+/**
+ * Generates test data based on the specified input data type and size.
+ *
+ * @template T - The type of data to generate.
+ * @param {InputDataType} type - The type of data to generate (e.g., number[], object[]).
+ * @param {number} size - The size of the data to generate.
+ * @returns {T} - The generated test data.
+ * @throws Will throw an error if the data type is not supported.
+ */
 export function generateTestData<T>(type: InputDataType, size: number): T {
   switch (type) {
     case InputDataType.NumberArray:

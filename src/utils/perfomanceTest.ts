@@ -1,6 +1,16 @@
 import chalk from 'chalk';
 import { Algorithm } from '../types.js';
 
+/**
+ * Runs a performance test on the given algorithm using the provided test data.
+ * Logs the algorithm details, input, output, and execution time.
+ *
+ * @template I - The type of input data.
+ * @template O - The type of output data.
+ * @param {Algorithm<I, O>} algorithm - The algorithm to be tested.
+ * @param {I} testData - The input data for the algorithm.
+ * @returns {Promise<void>} - A promise that resolves when the test is complete.
+ */
 export async function runPerformanceTest<I, O>(
   algorithm: Algorithm<I, O>,
   testData: I
@@ -17,24 +27,22 @@ export async function runPerformanceTest<I, O>(
 
   let currentTestData = testData;
 
-  // Выводим информацию об алгоритме с цветами и отступами
-  console.log(chalk.blue.bold(`\nАлгоритм: ${name}\n`)); // Отступ после названия алгоритма
-  console.log(chalk.green(`  Описание: ${description}\n`)); // Отступ после описания
-  console.log(chalk.yellow(`  Временная сложность: ${timeComplexity}`));
-  console.log(
-    chalk.yellow(`  Пространственная сложность: ${spaceComplexity}\n`)
-  ); // Отступ после сложностей
-  console.log(chalk.cyan(`  Тип входных данных: ${inputType}`));
-  console.log(chalk.cyan(`  Тип выходных данных: ${outputType}\n`)); // Отступ после типов данных
+  // Display algorithm information with colors and indentation
+  console.log(chalk.blue.bold(`\nAlgorithm: ${name}`));
+  console.log(chalk.green(`  Description: ${description}`));
+  console.log(chalk.yellow(`  Time Complexity: ${timeComplexity}`));
+  console.log(chalk.yellow(`  Space Complexity: ${spaceComplexity}`));
+  console.log(chalk.cyan(`  Input Type: ${inputType}`));
+  console.log(chalk.cyan(`  Output Type: ${outputType}`));
 
-  // Выводим входные данные (только первые 3 элемента)
+  // Display input data (only first 3 elements)
   if (Array.isArray(testData)) {
     if (sorted) {
       currentTestData = testData.sort();
     }
     const displayData = testData.slice(0, 3);
     console.log(chalk.magenta(`  Входные данные (первые 3 элемента):`));
-    console.log(`${JSON.stringify(displayData, null, 2)}...\n`); // С отступами и новой строкой
+    console.log(`${JSON.stringify(displayData, null, 2)}...\n`);
   } else {
     console.log(
       chalk.magenta(
@@ -46,13 +54,13 @@ export async function runPerformanceTest<I, O>(
   console.time(chalk.red(`  Время выполнения`));
   const result = algorithm(currentTestData);
   console.timeEnd(chalk.red(`  Время выполнения`));
-  console.log('\n'); // Отступ после времени выполнения
+  console.log('\n');
 
-  // Выводим результат (только первые 3 элемента)
+  // Display result (only first 3 elements if it's an array)
   if (Array.isArray(result)) {
     const displayResult = result.slice(0, 3);
     console.log(chalk.magenta(`  Результат (первые 3 элемента):`));
-    console.log(`${JSON.stringify(displayResult, null, 2)}...\n`); // С отступами и новой строкой
+    console.log(`${JSON.stringify(displayResult, null, 2)}...\n`);
   } else {
     console.log(
       chalk.magenta(`Результат: ${JSON.stringify(result, null, 2)}\n`)
